@@ -4,5 +4,14 @@ messages:
       Please respond in JSON format { songs: [{ artist: string, title: string
       }]}
   - role: user
-    content: 'Suggest songs based on mood: {{mood}}'
+    content: 'Suggest songs based on mood: {{input}}'
 model: openai/gpt-4o
+testData:
+  - input: happy
+    expected: ''
+evaluators:
+  - name: Relevance
+    uses: github/relevance
+  - name: No Bruno mars
+    string:
+      contains: Bruno Mars
